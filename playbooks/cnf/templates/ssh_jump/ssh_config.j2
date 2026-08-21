@@ -1,3 +1,4 @@
 Host *
-    proxycommand ssh -o StrictHostKeyChecking=no -i {{ ssh_jump_key }} -W %h:%p {{ ssh_jump_user }}@{{ ssh_jump_ip }}
-    StrictHostKeyChecking no
+    proxycommand ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=./.ansible_known_hosts -i {{ ssh_jump_key }} -W %h:%p {{ ssh_jump_user }}@{{ ssh_jump_ip }}
+    StrictHostKeyChecking accept-new
+    UserKnownHostsFile ./.ansible_known_hosts

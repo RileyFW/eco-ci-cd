@@ -101,6 +101,7 @@
   hosts: switch
   gather_facts: false
   vars:
+    ansible_host_key_checking: false
     switch_external_interface: []
     shell_script: "#!/bin/bash"
     artifact_dest_dir: /tmp
@@ -208,7 +209,7 @@
         ansible_connection: ansible.netcommon.network_cli
         ansible_paramiko_proxy_command: "ssh -i {{ hostvars['localhost'].ansible_env.HOME }}/jump-key
           -i {{ bastion_proxy_key }}
-          -W %h:%p -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+          -W %h:%p -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=./.ansible_known_hosts
           {{ hostvars['bastion'].ansible_user }}@{{ hostvars['bastion'].ansible_host }}"
       junipernetworks.junos.junos_netconf:
         netconf_port: 830

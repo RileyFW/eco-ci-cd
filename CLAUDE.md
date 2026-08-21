@@ -179,7 +179,7 @@ Located in `scripts/`:
 The `ansible.cfg` includes important settings:
 - Custom roles path: `./playbooks/compute/nto/roles:./playbooks/infra/roles`
 - Collections installed to: `./collections`
-- SSH host key checking disabled for automation
+- SSH host key checking enabled with TOFU (`StrictHostKeyChecking=accept-new` and `UserKnownHostsFile=./.ansible_known_hosts`)
 - Forced color output for CI environments
 
 ### Testing Framework

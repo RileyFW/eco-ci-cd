@@ -311,11 +311,11 @@ ansible-playbook ./playbooks/{domain}/{playbook}.yml \
   ${ECO_GOTESTS_ENV_VARS}
 
 # Execute tests via SSH
-ssh -o StrictHostKeyChecking=no "${BASTION_USER}@${BASTION_IP}" -i /tmp/temp_ssh_key \
+ssh -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=./.ansible_known_hosts "${BASTION_USER}@${BASTION_IP}" -i /tmp/temp_ssh_key \
   "cd /tmp/gotest && ./run_gotests.sh || true"
 
 # Collect artifacts
-scp -r -o StrictHostKeyChecking=no -i /tmp/temp_ssh_key \
+scp -r -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=./.ansible_known_hosts -i /tmp/temp_ssh_key \
   "${BASTION_USER}@${BASTION_IP}":/tmp/artifacts/*.xml "${ARTIFACT_DIR}/junit_eco_gotests/"
 ```
 

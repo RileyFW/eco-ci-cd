@@ -6,3 +6,5 @@ inventory*
 *__pycache__*
 **/collections
 **/.ansible
+.ansible_known_hosts
+.omo
